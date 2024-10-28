@@ -4,20 +4,20 @@ const Course = require('../model/course');
 
 const createCourse = async (req, res) => {
     try {
-        // Destructure all required fields from req.body
+        
         const { courseName, courseCode, description, credits, department, lecturerId } = req.body;
 
-        // Create a new instance of Course
+        
         const newCourse = new Course({
             courseName,
-            courseCode, // Include courseCode
+            courseCode, 
             description,
-            credits, // Include credits
+            credits, 
             department,
-            lecturerId // Make sure to include the lecturerId from the request body
+            lecturerId 
         });
 
-        // Save the new course
+     
         await newCourse.save();
         res.status(201).json({ message: 'Course created successfully', course: newCourse });
     } catch (error) {
