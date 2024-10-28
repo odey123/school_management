@@ -1,7 +1,7 @@
 const Student = require('../model/student');
 const Course = require('../model/course');
 
-// Controller to log in a student
+// Controller to log in a studen
 const loginStudent = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -11,7 +11,7 @@ const loginStudent = async (req, res) => {
             return res.status(404).json({ message: 'Student not found' });
         }
         
-        const isMatch = (student.password === password); // This should ideally use bcrypt.compare for security
+        const isMatch = (student.password === password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid password' });
         }
@@ -42,12 +42,11 @@ const registerForCourse = async (req, res) => {
             return res.status(404).json({ message: 'Course not found' });
         }
 
-        // Check if student is already enrolled
         if (course.studentsEnrolled.includes(studentId)) {
             return res.status(400).json({ message: 'Student already registered for this course' });
         }
 
-        // Add student to the course and update student document
+       
         course.studentsEnrolled.push(studentId);
         await course.save();
 
@@ -79,7 +78,7 @@ const removeRegisteredCourse = async (req, res) => {
     try {
         const { studentId, courseId } = req.body;
 
-        // Remove course from student and update course document
+        
         const student = await Student.findByIdAndUpdate(
             studentId,
             { $pull: { courses: courseId } },
