@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const Student = require('../model/student');
 const Lecturer = require('../model/lecturer');
 
-// Email sending function
+
 const sendEmail = (studentEmail, studentName, tempPassword) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail', 
@@ -74,7 +74,7 @@ const registerStudent = async (req, res) => {
 // Function to register a lecturer
 const registerLecturer = async (req, res) => {
     try {
-        console.log("Request Body:", req.body); // Debugging
+        console.log("Request Body:", req.body); 
         const { 
             firstName, 
             surnName, 
@@ -105,12 +105,12 @@ const registerLecturer = async (req, res) => {
 
         res.status(201).json({ message: 'Lecturer registered successfully', lecturer });
     } catch (error) {
-        console.error('Error registering lecturer:', error); // Corrected logging
+        console.error('Error registering lecturer:', error); 
         res.status(500).json({ message: 'Error registering lecturer', error: error.message });
     }
 };
 
-// Function to delete a student
+// Function to delete a studen
 const deleteStudent = async (req, res) => {
     try {
         const { studentId } = req.params;
